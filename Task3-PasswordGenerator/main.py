@@ -2,7 +2,6 @@ from tkinter import *
 from tkinter import messagebox
 import random
 
-
 def generate(size,sym,num,low,upp):
     if size.get()=="":
         messagebox.showerror("Error","Please enter the length of the password")
@@ -10,7 +9,7 @@ def generate(size,sym,num,low,upp):
     try:
         size = int(size.get())
     except:
-        messagebox.showerror("Error","Please enter a valid length")
+        messagebox.showerror("Error","Please enter a valid number")
         return
     if size>15:
         messagebox.showerror("Error","Please enter a length less than 15")
@@ -29,15 +28,19 @@ def generate(size,sym,num,low,upp):
         return
     password=random.sample(allchar,size)
     password="".join(password)
-    result.set(password)
-    
+    result.config(state="normal")
+    result.delete(0,END)
+    result.insert(0,password)
+    result.config(state="readonly")
+
 window = Tk()
 window.title("Password Generator")
 window.resizable(False, False)
 
-Label(window, text="Password Generator", font=("Times New Roman", 20, "bold"),anchor="center").grid(row=0, column=0, columnspan=2, padx=10, pady=10)
+
+Label(window, text="Password Generator", font=("Times New Roman", 20, "bold","underline"), anchor="center", fg="black", borderwidth=2).grid(row=0, column=0, columnspan=2, padx=10, pady=10)
 Label(window, text="Enter the length of the password to be generated: ", font=("Times New Roman", 15)).grid(row=1, column=0, padx=10, pady=10, sticky="w")
-size = Entry(window, font=("Times New Roman", 15), width=5)
+size = Entry(window, font=("Times New Roman", 15), borderwidth=3, width=5)
 size.grid(row=1, column=1, padx=10, pady=10, sticky="w")
 sym = IntVar()
 Checkbutton(window, text="Include Symbols", font=("Times New Roman", 15),variable=sym).grid(row=2, column=0, columnspan=2, padx=10, pady=10, sticky="w")
@@ -47,9 +50,9 @@ low = IntVar()
 Checkbutton(window, text="Include Lowercase Characters", font=("Times New Roman", 15),variable=low).grid(row=4, column=0, columnspan=2, padx=10, pady=10, sticky="w")
 upp = IntVar()
 Checkbutton(window, text="Include Uppercase Characters", font=("Times New Roman", 15),variable=upp).grid(row=5, column=0,  columnspan=2,padx=10, pady=10, sticky="w")
-Button(window, text="Generate Password", font=("Times New Roman", 15),command = lambda:generate(size,sym,num,low,upp)).grid(row=6, column=0, columnspan=2, padx=10, pady=10, sticky="w")
-Label(window, text="The generated password is:- ",font=("Times New Roman", 15)).grid(row=7, column=0, padx=10, pady=10, sticky="w")
-result = Entry(window, text="",font=("Times New Roman", 15),width=20,state="readonly")
+Button(window, text="Generate Password", font=("Times New Roman", 15, "bold"),command = lambda:generate(size,sym,num,low,upp), bg="blue", fg="white").grid(row=6, column=0, columnspan=2, padx=10, pady=10)
+Label(window, text="The generated password is:- ",font=("Times New Roman", 15, "bold")).grid(row=7, column=0, padx=10, pady=10, sticky="w")
+result = Entry(window, text="", font=("Times New Roman", 15), width=20, borderwidth=5, state="readonly")
 result.grid(row=7, column=1, padx=10, pady=10, sticky="w")
 
 window.mainloop()
