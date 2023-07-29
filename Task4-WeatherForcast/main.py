@@ -17,12 +17,9 @@ def generate(city):
     response = requests.get(url)
     if response.status_code==200:
         data = response.json()
-        print(data)
-        for i in data:
-            print(i,":",data[i])
         temp.config(state="normal")
         temp.delete(0,END)
-        temp.insert(0,str(data['main']['temp']-273.15)+"°C")
+        temp.insert(0,str(round((data['main']['temp']-273.15),2))+"°C")
         temp.config(state="readonly")
 
         hum.config(state="normal")
@@ -39,6 +36,9 @@ def generate(city):
         desc.delete(0,END)
         desc.insert(0,data['weather'][0]['description'])
         desc.config(state="readonly")
+
+        city.delete(0,END)
+        city.insert(0,data['name'])
     else:
         messagebox.showerror("Error","City not found")
         return
