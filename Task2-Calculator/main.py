@@ -5,6 +5,8 @@ display="0"
 
 def button_click(number):
     global display
+    if display == "0":
+        display = ""
     display += str(number)
     screen.config(text=display)
 
