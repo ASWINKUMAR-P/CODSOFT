@@ -17,11 +17,14 @@ def resultpage(window):
     Label(window, text="").grid(row=0, column=0)
     Label(window, text="Python Quiz Game", font=("Times New Roman", 20,"bold underline"), borderwidth=3, anchor="center",width=35).grid(row=1, column=0)
     Label(window, text="").grid(row=2, column=0)
-    Label(window, text="Result:", font=(" Times New Roman", 20, "bold")).grid(row=3, column=0)
+    Label(window, text="").grid(row=3, column=0)
     Label(window, text="").grid(row=4, column=0)
-    Label(window, text=" Your Score: " + str(score) + "/5", font=("Times New Roman", 20, "bold")).grid(row=5, column=0)
-    Label(window, text="").grid(row=6, column=0)
-    Button(window, text="Play Again", font=("Times New Roman", 15), command=lambda: playagain(window)).grid(row=7, column=0)
+    Label(window, text="").grid(row=5, column=0)
+    Label(window, text="Result:", font=(" Times New Roman", 20, "bold")).grid(row=6, column=0)
+    Label(window, text="").grid(row=7, column=0)
+    Label(window, text=" Your Score: " + str(score) + "/5", font=("Times New Roman", 15, "bold")).grid(row=8, column=0)
+    Label(window, text="").grid(row=9, column=0)
+    Button(window, text="Play Again", font=("Times New Roman", 15), command=lambda: playagain(window)).grid(row=10, column=0)
 
 
 
@@ -32,7 +35,6 @@ def checkanswer(window, q, answer, Options, button, qnum):
     
     correct_answer = q["answer"]
     selected_answer = answer.get()
-    print(selected_answer)
 
     for i in range(4):
         if correct_answer == q["options"][i]:
