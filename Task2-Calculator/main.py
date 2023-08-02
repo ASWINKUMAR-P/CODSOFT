@@ -1,13 +1,10 @@
 import tkinter as tk
+import re
 
 display="0"
 
 def button_click(number):
     global display
-    if display == "0":
-        display = ""
-    if len(display)!=0 and display[-1] in "+-*/" and number=="0":
-        return
     display += str(number)
     screen.config(text=display)
 
@@ -18,6 +15,8 @@ def button_clear():
 
 def button_equal():
     global display
+    regex_pattern = r'\b0+(\d+)'
+    display = re.sub(regex_pattern, r'\1', display)
     try:
         display = str(eval(display))
     except:
