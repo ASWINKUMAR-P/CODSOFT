@@ -3,6 +3,10 @@ from tkinter import *
 from tkinter import messagebox
 import random
 
+def playagain(window):
+    window.destroy()
+    home()
+
 def resultpage(window):
     window.destroy()
     window = Tk()
@@ -17,7 +21,7 @@ def resultpage(window):
     Label(window, text="").grid(row=4, column=0)
     Label(window, text=" Your Score: " + str(score) + "/5", font=("Times New Roman", 20, "bold")).grid(row=5, column=0)
     Label(window, text="").grid(row=6, column=0)
-    Button(window, text="Play Again", font=("Times New Roman", 15), command=lambda: home()).grid(row=7, column=0)
+    Button(window, text="Play Again", font=("Times New Roman", 15), command=lambda: playagain(window)).grid(row=7, column=0)
 
 
 
